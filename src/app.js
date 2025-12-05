@@ -27,6 +27,10 @@ const app = express()
 
 // Lec 18 middleware & errorHandling
  
+app.use("/", (req , res, next)=>{
+    res.send("handle / route")
+    next()
+})
 app.use("/user", (req, res, next)=>{
     console.log("handle the route user 1");
     res.send("Response!!!")
