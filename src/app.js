@@ -43,15 +43,33 @@ const app = express()
 
 // Middle ware using auth 
 
-const {admidAuth, userdata} = require("./Milddleware/auth.js")
+// const {admidAuth, userdata} = require("./Milddleware/auth.js")
 
-app.use("/admin",admidAuth)
+// app.use("/admin",admidAuth)
 
-app.use("/admin/userdata", (req, res)=>{
-    res.send("this is all user data!!!")
+// app.use("/admin/userdata", (req, res)=>{
+//     res.send("this is all user data!!!")
+// })
+// app.use("/admin/userdelete" , userdata, (req, res)=>{
+//     res.send("user data deleted!")
+// })
+
+
+
+//error handliing 
+app.get("/getUserData", (req ,res)=>{
+    try{
+        throw new Error("Eoorrroe 8923j2ujd")
+        res.send("user Data sended")
+    }catch(err){
+        res.status(500).send("some Error contact support team")
+    }
 })
-app.use("/admin/userdelete" , userdata, (req, res)=>{
-    res.send("user data deleted!")
+
+app.use("/", (err, req, res, next)=>{
+    if(err){
+        res.status(500).send("something wrong :/")
+    }
 })
 
 
