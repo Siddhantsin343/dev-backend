@@ -27,19 +27,32 @@ const app = express()
 
 // Lec 18 middleware & errorHandling
  
-app.use("/", (req , res, next)=>{
-    res.send("handle / route")
-    next()
-})
-app.use("/user", (req, res, next)=>{
-    console.log("handle the route user 1");
-    res.send("Response!!!")
-    next()
-},(req , res)=>{
-    console.log("handle the route user 1");
-    res.send("2nd Response")
-})
+// app.use("/", (req , res, next)=>{
+//     res.send("handle / route")
+//     next()
+// })
+// app.use("/user", (req, res, next)=>{
+//     console.log("handle the route user 1");
+//     res.send("Response!!!")
+//     next()
+// },(req , res)=>{
+//     console.log("handle the route user 1");
+//     res.send("2nd Response")
+// })
 
+
+// Middle ware using auth 
+
+const {admidAuth, userdata} = require("./Milddleware/auth.js")
+
+app.use("/admin",admidAuth)
+
+app.use("/admin/userdata", (req, res)=>{
+    res.send("this is all user data!!!")
+})
+app.use("/admin/userdelete" , userdata, (req, res)=>{
+    res.send("user data deleted!")
+})
 
 
 app.listen(3000, ()=>{
