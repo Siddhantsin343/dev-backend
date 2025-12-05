@@ -58,12 +58,12 @@ const app = express()
 
 //error handliing 
 app.get("/getUserData", (req ,res)=>{
-    try{
+    // try{
         throw new Error("Eoorrroe 8923j2ujd")
         res.send("user Data sended")
-    }catch(err){
-        res.status(500).send("some Error contact support team")
-    }
+    // }catch(err){
+    //     res.status(500).send("some Error contact support team")
+    // }
 })
 
 app.use("/", (err, req, res, next)=>{
